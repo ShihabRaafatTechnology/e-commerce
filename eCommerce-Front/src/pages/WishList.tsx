@@ -25,9 +25,7 @@ const Wishlist = () => {
 
   return (
     <>
-      <Heading>
-        home / <span className="text-primary">wishlist</span>
-      </Heading>
+      <Heading title={`home / ${<span className="text-primary">wishlist</span>}`} />
       <GridList
         records={records}
         renderItems={(record) => <Product {...record} key={record.id} />}

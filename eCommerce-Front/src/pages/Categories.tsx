@@ -2,6 +2,7 @@ import { GridList, Heading } from "@components/common";
 import { Category } from "@components/eCommerce";
 import { Loading } from "@components/feedback";
 import actGetCategories from "@store/categories/act/actGeCategories";
+import { categoriesCleanUp } from "@store/categories/categoriesSlice";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { useEffect } from "react";
 const Categories = () => {
@@ -11,15 +12,14 @@ const Categories = () => {
     (state) => state.categories
   );
   useEffect(() => {
-    if (!records.length) {
       dispatch(actGetCategories());
-    }
-  }, [dispatch, records]);
+      return () => {dispatch(categoriesCleanUp());}
+  }, [dispatch]);
 
   
   return (
     <>
-    <Heading>home / <span className="text-primary">categories</span></Heading>
+    <Heading title={`home / ${<span className="text-primary">categories</span>}`}/>
     <Loading status={loading} error={error}>
       <GridList records={records} renderItems={(record) => <Category {...record} key={record.id} />}/>
     </Loading>

@@ -47,6 +47,9 @@ const cartSlice = createSlice({
             delete state.items[id];
             state.productsFullInfo = state.productsFullInfo.filter((el)=> el.id !== action.payload)
             console.log("removeCartAfter: " + state.items[id]);
+        },
+        cartProductsFullInfo: (state) =>{
+            state.productsFullInfo = [];
         }
     },
     extraReducers:
@@ -73,5 +76,5 @@ const cartSlice = createSlice({
 
 
 export { actGetProductsByItems };
-export const { addToCart, removeFromCart, removeCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, removeCart, cartProductsFullInfo } = cartSlice.actions;
 export default cartSlice.reducer;

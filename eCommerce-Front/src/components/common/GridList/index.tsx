@@ -9,7 +9,7 @@ const GridList = <T,>({records, renderItems}:TGridList<T>) => {
       records.map((record) => renderItems(record))
     ) : (
       <div className="text-center col-span-4 text-4xl font-extrabold text-secondary">
-        {"No Categories Available"}
+        {"No Wishlist Available"}
       </div>
     );
   return (

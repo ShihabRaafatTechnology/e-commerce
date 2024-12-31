@@ -35,6 +35,7 @@ const Product = memo(
           .then(() => setIsLoading(false));
       }
     };
+
     return (
       <div className="max-w-sm rounded-lg drop-shadow-2xl bg-slate-700 relative">
         <div
