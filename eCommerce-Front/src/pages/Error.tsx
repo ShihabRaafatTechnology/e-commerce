@@ -1,16 +1,8 @@
-import { isRouteErrorResponse, Link, useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useError from "@hooks/useError";
 
 const Error = () => {
-  const error = useRouteError();
-  let errorCode: number;
-  let errorMessage: string;
-  if (isRouteErrorResponse(error)) {
-    errorCode = error.status;
-    errorMessage = error.statusText;
-  } else {
-    errorCode = 404;
-    errorMessage = "Page not found";
-  }
+  const { errorCode, errorMessage } = useError();
   return (
     <main className="h-screen w-full flex flex-col justify-center items-center bg-[#1A2238]">
       <h1 className="text-9xl font-extrabold text-white tracking-widest">

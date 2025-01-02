@@ -1,9 +1,9 @@
-import { IconShoppingBag, IconWishlist } from "@components/eCommerce";
 import Nav from "./Nav";
 import { NavLink } from "react-router-dom";
 import { CiMenuFries } from "react-icons/ci";
 import { IoCloseSharp } from "react-icons/io5";
 import { useState } from "react";
+import HeaderRightBar from "./HeaderRightBar";
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -20,8 +20,7 @@ const Header = () => {
           {/*  Icons */}
           <div className="flex justify-between items-center w-[45%] md:w-[10%] text-lg">
             <div className="flex justify-around w-[60%] md:w-full">
-              <IconWishlist />
-              <IconShoppingBag />
+             <HeaderRightBar/>
             </div>
             <CiMenuFries
               onClick={() => setIsNavOpen(!isNavOpen)}

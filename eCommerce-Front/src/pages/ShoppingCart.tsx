@@ -1,31 +1,11 @@
 import { Heading } from "@components/common";
 import { CartItemsList, CartItemsSubTotalPrice } from "@components/eCommerce";
 import { Loading } from "@components/feedback";
-import { actGetProductsByItems, cartProductsFullInfo } from "@store/cart/cartSlice";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import { useEffect, useMemo } from "react";
-import { shallowEqual } from "react-redux";
+import useShoppingCart from "@hooks/useShoppingCart";
+
 
 const ShoppingCart = () => {
-  const dispatch = useAppDispatch();
-  const { items, productsFullInfo, loading, error } = useAppSelector(
-    (state) => state.cart,
-    shallowEqual
-  );
-  useEffect(() => {
-    dispatch(actGetProductsByItems());
-    return () => { dispatch(cartProductsFullInfo()) }
-  }, [dispatch]);
-
-  const products = useMemo(
-    () =>
-      productsFullInfo.map((item) => ({
-        ...item,
-        quantity: item.id ? items[item.id] ?? 0 : 0,
-      })),
-    [productsFullInfo, items]
-  );
-
+  const { products, loading, error } = useShoppingCart();
   return (
     <>
       <Heading title={`home / ${<span className="text-primary">cart</span>}`} />
