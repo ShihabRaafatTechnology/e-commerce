@@ -2,6 +2,7 @@ import { TProduct } from "@customTypes/product"
 import CartItems from "../CartItems"
 
 type TCartItemsListProps = {products: TProduct[]}
+
 const CartItemsList = ({products}:TCartItemsListProps) => {
     const renderList = products.map((product) => <CartItems key={product.id} {...product}/>);
   return (

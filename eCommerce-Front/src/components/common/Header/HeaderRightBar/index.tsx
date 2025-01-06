@@ -1,12 +1,11 @@
-import { TotalQuantityShop } from "@store/cart/selectors";
-import { useAppSelector } from "@store/hooks";
+
 import { FaShoppingBag } from "react-icons/fa";
 import { LuClipboardList } from "react-icons/lu";
 import HeaderCounter from "../HeaderCounter";
+import useHeaderRightBar from "@hooks/useHeaderRightBar";
 
 const HeaderRightBar = () => {
-    const totalWishlist = useAppSelector(state => state.wishlist.itemsId.length);
-    const totalCart = useAppSelector(TotalQuantityShop);
+   const {totalWishlist, totalCart} = useHeaderRightBar();
     return (
         <>
             <HeaderCounter page="/wishlist" totalQuantity={totalWishlist} svgIcon={<LuClipboardList className="text-primary text-[30px] md:text-[40px]" />} />

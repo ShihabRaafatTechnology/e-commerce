@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import useHeaderCounter from "@hooks/useHeaderCounter";
 import { useNavigate } from "react-router-dom";
 
 type THeaderCounter = {
@@ -8,13 +8,8 @@ type THeaderCounter = {
 }
 
 const HeaderCounter = ({totalQuantity, page, svgIcon}: THeaderCounter) => {
-    const [animate, setAnimate] = useState(false);
     const navigate = useNavigate();
-    useEffect(() => {
-        if (!totalQuantity) return;
-        setAnimate(true);
-        setTimeout(() => setAnimate(false), 300);
-    }, [totalQuantity]);
+    const animate = useHeaderCounter(totalQuantity);
     return (
         <div className="relative cursor-pointer" onClick={() => navigate(page)}>
             {svgIcon}

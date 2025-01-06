@@ -1,21 +1,10 @@
 import { TProduct } from "@customTypes/product";
+import useCartItemsSubTotalPrice from "@hooks/useCartItemsSubTotalPrice";
 
-type TCartItemsListProps = { products: TProduct[] };
+export type TCartItemsListProps = { products: TProduct[] };
 
 export const CartItemsSubTotalPrice = ({ products }: TCartItemsListProps) => {
-  const Subtotal = products.reduce((acc, product) => {
-    if (product.quantity && typeof product.quantity === "number") {
-      return acc + product.price * product?.quantity;
-    } else {
-      return acc;
-    }
-  }, 0);
-  const totalCheck = Subtotal + 200;
-  const formatPrice = (price: number) =>
-    new Intl.NumberFormat("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
+  const {formatPrice, totalCheck, Subtotal} = useCartItemsSubTotalPrice(products);
   return (
     <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
       <div className="mb-2 flex justify-between">

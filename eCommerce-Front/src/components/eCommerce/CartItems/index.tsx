@@ -1,33 +1,10 @@
 import { TProduct } from "@customTypes/product";
-import { useAppDispatch } from "@store/hooks";
-import { addToCart, removeCart, removeFromCart } from "@store/cart/cartSlice";
 import { AiFillDelete } from "react-icons/ai";
-import { memo, useCallback } from "react";
+import { memo } from "react";
+import useCartItems from "@hooks/useCartItems";
 
 const CartItems = memo(({ id, title, cat_prefix, img, price, quantity, max }: TProduct) => {
-  const dispatch = useAppDispatch();
-  const currentQuantity = quantity ?? 0;
-  const isMaxOrders =  currentQuantity >= max? true : false;
-  const isMinOrders =  currentQuantity > 1? true : false;
-
-
-  const removeFromCartHandler = useCallback(() => {
-    if (isMinOrders) {
-      dispatch(removeFromCart(id));
-    }
-  }, [dispatch, id, isMinOrders]);
-
-  const removeCartHandler = useCallback(() => {
-    console.log("removeCartHandler: " + id);
-    
-    dispatch(removeCart(id));
-  }, [dispatch, id]);
-
-  const addToCartHandler = useCallback(() => {
-    if (!isMaxOrders) {
-      dispatch(addToCart(id));
-    }
-  }, [dispatch, id, isMaxOrders]);
+  const {removeFromCartHandler, removeCartHandler, addToCartHandler} = useCartItems(id ?? 0, quantity ?? 0, max);
     
   return (
     quantity !== 0 && (
