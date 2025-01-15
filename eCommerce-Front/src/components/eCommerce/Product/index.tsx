@@ -1,41 +1,15 @@
 import { TProduct } from "@customTypes/product";
-import { addToCart } from "@store/cart/cartSlice";
-import { useAppDispatch } from "@store/hooks";
-import { actLikeToggle } from "@store/wishlist/wishlistSlice";
-import { useState, useEffect, memo } from "react";
+import useProduct from "@hooks/useProduct";
+import { memo } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const Product = memo(
   ({ id, title, img, cat_prefix, price, quantity, max, isLiked }: TProduct) => {
-    const dispatch = useAppDispatch();
-    const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const currentQuantity = quantity ?? 0;
-    const isMaxOrders = currentQuantity >= max ? true : false;
-
-    useEffect(() => {
-      if (!isBtnDisabled) {
-        return;
-      }
-      setTimeout(() => {
-        setIsBtnDisabled(false);
-      }, 300);
-    }, [isBtnDisabled]);
-
-    const addToCartHandler = () => {
-      dispatch(addToCart(id));
-      setIsBtnDisabled(true);
-    };
-
-    const likeToggleHandler = () => {
-      if (!isLoading) {
-        setIsLoading(true);
-        dispatch(actLikeToggle(id as number))
-          .unwrap()
-          .then(() => setIsLoading(false));
-      }
-    };
-
+    if (id === undefined) {
+      console.error("Product ID is undefined.");
+      return null; // Render nothing or a fallback UI
+    }
+    const { likeToggleHandler, isLoading, isMaxOrders, addToCartHandler, isBtnDisabled } = useProduct({ id, quantity, max })
     return (
       <div className="max-w-sm rounded-lg drop-shadow-2xl bg-slate-700 relative">
         <div

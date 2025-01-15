@@ -1,18 +1,8 @@
-import { TotalQuantityShop } from "@store/cart/selectors";
-import { useAppSelector } from "@store/hooks";
-import { useEffect, useState } from "react";
+import useIconShoppingBag from "@hooks/useIconShoppingBag";
 import { FaShoppingBag } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 const IconShoppingBag = () => {
-  const [animate, setAnimate] = useState(false);
-  const totalItems = useAppSelector(TotalQuantityShop);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!totalItems) return;
-    setAnimate(true);
-    setTimeout(() => setAnimate(false), 300);
-  }, [totalItems]);
+  const {animate, totalItems, navigate} = useIconShoppingBag();
   return (
     <div className="relative cursor-pointer" onClick={()=> navigate("/cart")}>
       <FaShoppingBag className="text-primary text-[28.5px] md:text-[38.5px]" />

@@ -1,20 +1,11 @@
-import { useAppSelector } from "@store/hooks";
-import { useEffect, useState } from "react";
+import useIconWishlist from "@hooks/useIconWishlist";
 import { LuClipboardList } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
 
 const IconWishlist = () => {
-  const [animate, setAnimate] = useState(false);
-  const totalItems = useAppSelector(state => state.wishlist.itemsId);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!totalItems) return;
-    setAnimate(true);
-    setTimeout(() => setAnimate(false), 300);
-  }, [totalItems]);
+  const { animate, totalItems, navigate } = useIconWishlist();
   return (
-    <div className="relative cursor-pointer" onClick={()=> navigate("/wishlist")}>
-      <LuClipboardList  className="text-primary text-[30px] md:text-[40px]" />
+    <div className="relative cursor-pointer" onClick={() => navigate("/wishlist")}>
+      <LuClipboardList className="text-primary text-[30px] md:text-[40px]" />
       {totalItems.length > 0 && <div
         className={
           animate

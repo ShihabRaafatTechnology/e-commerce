@@ -5,7 +5,6 @@ import useWishList from "@hooks/useWishList";
 
 const Wishlist = () => {
   const {records} = useWishList();
-  
   return (
     <>
       <Heading title={<>home / <span className="text-primary">wishlist</span></>} />

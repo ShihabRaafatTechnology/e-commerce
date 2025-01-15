@@ -1,6 +1,6 @@
-import { TCartItemsListProps } from "@components/eCommerce/CartItemsSubTotalPrice";
+import { TProduct } from "@customTypes/product";
 
-const useCartItemsSubTotalPrice = ({products}: TCartItemsListProps) => {
+const useCartItemsSubTotalPrice = (products: TProduct[]) => {
     const Subtotal = products.reduce((acc, product) => {
         if (product.quantity && typeof product.quantity === "number") {
           return acc + product.price * product?.quantity;
