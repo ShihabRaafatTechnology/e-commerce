@@ -19,8 +19,11 @@ const useProducts = () => {
 
     useEffect(() => {
         if (params.prefix) {
-            dispatch(actGetProductsByCatPrefix(params.prefix));
-            return () => { dispatch(productsCleanUp()) };
+            const promise = dispatch(actGetProductsByCatPrefix(params.prefix));
+            return () => { 
+                dispatch(productsCleanUp());
+                promise.abort();
+             };
         }
     }, [dispatch, params]);
     return { productsFullInfo, params }

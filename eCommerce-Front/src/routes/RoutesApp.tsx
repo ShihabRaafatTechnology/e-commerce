@@ -13,7 +13,7 @@ const Login = lazy(() => import('@pages/Login'));
 const Register = lazy(() => import('@pages/Register'));
 const Error = lazy(() => import('@pages/Error'));
 const ShoppingCart = lazy(() => import('@pages/ShoppingCart'));
-const Wishlist = lazy(() => import('@pages/WishList'));
+const Wishlist = lazy(() => import('@pages/WishList')); 
 
 const router = createBrowserRouter([
   {

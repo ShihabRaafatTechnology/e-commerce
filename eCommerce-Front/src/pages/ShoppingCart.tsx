@@ -9,21 +9,20 @@ const ShoppingCart = () => {
   return (
     <>
       <Heading title={`home / ${<span className="text-primary">cart</span>}`} />
-      <div className="pt-20">
-        <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
         <div className="justify-center md:flex md:space-x-6 xl:px-0">
           <Loading status={loading} error={error}>
             {products.length ? (
-              <>
+              <div className="pt-20">
                 <CartItemsList products={products} />
                 <CartItemsSubTotalPrice products={products} />
-              </>
+              </div>
             ) : (
-              "Your cart is empty"
+              <div className="text-center col-span-4 text-4xl font-extrabold text-secondary h-[70vh] flex place-items-center">
+              {"No Cart Available"}
+            </div>
             )}
           </Loading>
         </div>
-      </div>
     </>
   );
 };

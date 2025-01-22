@@ -8,10 +8,7 @@ type TResponse = TProduct[];
 const actGetWishlist = createAsyncThunk(
   "wishlist/actGetWishlist",
   async (_, thunkAPI) => {
-    const { rejectWithValue, fulfillWithValue } = thunkAPI;
-    // Optional: Using AbortController to handle request cancellation
-    const controller = new AbortController();
-    const { signal } = controller;
+    const { rejectWithValue, fulfillWithValue, signal } = thunkAPI;
 
     try {
       const userWishlist = await axios.get<{ productId: number }[]>(

@@ -6,10 +6,7 @@ import { axiosError } from "@utils";
 type TResponse = TCategory[];
 
 const actGetCategories = createAsyncThunk("categories/actGetCategories", async (_, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    // Optional: Using AbortController to handle request cancellation
-    const controller = new AbortController();
-    const { signal } = controller;
+    const { rejectWithValue, signal } = thunkAPI;
 
     try {
         const response = await axios.get<TResponse>("/categories", {

@@ -10,8 +10,11 @@ const useShoppingCart = () => {
         shallowEqual
     );
     useEffect(() => {
-        dispatch(actGetProductsByItems());
-        return () => { dispatch(cartProductsFullInfo()) }
+        const promise = dispatch(actGetProductsByItems());
+        return () => { 
+            dispatch(cartProductsFullInfo());
+            promise.abort(); 
+        }
     }, [dispatch]);
 
     const products = useMemo(

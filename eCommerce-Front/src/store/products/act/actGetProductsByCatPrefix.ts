@@ -11,10 +11,10 @@ const actGetProductsByCatPrefix = createAsyncThunk<
   { rejectValue: string } // Type of the value returned by `rejectWithValue`
 >(
   "products/actGetProductsByCatPrefix",
-  async (prefix, { rejectWithValue }) => {
+  async (prefix, { rejectWithValue, signal }) => {
     try {
       const response = await axios.get<TResponse>(
-        `/products?cat_prefix=${prefix}`
+        `/products?cat_prefix=${prefix}`,{signal}
       );
       return response.data; // Success case
     } catch (error) {
