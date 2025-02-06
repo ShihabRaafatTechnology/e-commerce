@@ -20,3 +20,5 @@ const IconWishlist = () => {
 };
 
 export default IconWishlist;
+
+

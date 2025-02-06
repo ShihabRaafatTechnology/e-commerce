@@ -1,4 +1,4 @@
-import { TProduct } from "@customTypes/product";
+import { TProduct } from "@types";
 import { AiFillDelete } from "react-icons/ai";
 import { memo } from "react";
 import useCartItems from "@hooks/useCartItems";

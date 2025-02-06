@@ -1,4 +1,4 @@
-import { TProduct } from "@customTypes/product";
+import { TProduct } from "@types";
 import useProduct from "@hooks/useProduct";
 import { memo } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";

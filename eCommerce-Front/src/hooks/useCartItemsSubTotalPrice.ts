@@ -1,4 +1,4 @@
-import { TProduct } from "@customTypes/product";
+import { TProduct } from "@types";
 
 const useCartItemsSubTotalPrice = (products: TProduct[]) => {
     const Subtotal = products.reduce((acc, product) => {

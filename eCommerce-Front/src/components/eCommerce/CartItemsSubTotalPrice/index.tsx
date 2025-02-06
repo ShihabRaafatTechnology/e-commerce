@@ -1,10 +1,10 @@
-import { TProduct } from "@customTypes/product";
+import { TProduct } from "@types";
 import useCartItemsSubTotalPrice from "@hooks/useCartItemsSubTotalPrice";
 
 export type TCartItemsListProps = { products: TProduct[] };
 
 export const CartItemsSubTotalPrice = ({ products }: TCartItemsListProps) => {
-  const {formatPrice, totalCheck, Subtotal} = useCartItemsSubTotalPrice(products);
+  const { formatPrice, totalCheck, Subtotal } = useCartItemsSubTotalPrice(products);
   return (
     <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
       <div className="mb-2 flex justify-between">
@@ -18,11 +18,9 @@ export const CartItemsSubTotalPrice = ({ products }: TCartItemsListProps) => {
       <hr className="my-4" />
       <div className="flex justify-between">
         <p className="text-lg font-bold">Total</p>
-        <div className="">
-          <p className="mb-1 text-lg font-bold">{formatPrice(totalCheck)} L.E</p>
-          <p className="text-sm text-gray-700">including VAT</p>
-        </div>
+        <p className="mb-1 text-lg font-bold">{formatPrice(totalCheck)} L.E</p>
       </div>
+      <p className="text-sm text-gray-700 flex justify-end">including VAT</p>
       <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
         Check out
       </button>
